@@ -1,0 +1,61 @@
+class PongGame {
+   field Racket leftRacket; 
+   field Racket rightRacket;
+   field Table table;
+   field Sphere sphere;
+   field Clock_face clock_face;
+
+   constructor PongGame new() {
+      let leftRacket = Racket.new(0, 0, 32);
+      let rightRacket = Racket.new(485,0,32);
+      let table = Table.new(96, 240, 320, 10);
+      let sphere = Sphere.new(256, 128, 10, leftRacket, rightRacket, table);
+      let clock_face = Clock_face.new(224,224+32, 0);
+      return this;
+   }
+
+   method void dispose() {
+      do leftRacket.dispose();
+      do rightRacket.dispose();
+      do table.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   method void run() {
+      var char key; 
+      var boolean exit;
+      let exit = false;
+      
+      while (~exit) {
+         let key = Keyboard.keyPressed();
+
+         if (key = 87) { do leftRacket.moveUp(); }   // W - вверх
+         if (key = 83) { do leftRacket.moveDown(); } // S - вниз
+
+         if (key = 131) { do rightRacket.moveUp(); }   // Up - вверх
+         if (key = 133) { do rightRacket.moveDown(); } // Down - вниз
+
+         if (key = 81) { let exit = true; }          // Q - выход
+
+        do sphere.doLogic();
+
+        // проверяем, вылетел ли мяч за левую границу, если да, то добавляем очко правому игроку
+        if (sphere.condL(sphere.getX(), sphere.getY(), 1)){
+            do clock_face.ReScore(1);
+        }
+
+        // проверяем, вылетел ли мяч за правую границу, если да, то добавляем очко левому игроку
+        if (sphere.condR(sphere.getX(), sphere.getY(), 1)){
+            do clock_face.ReScore(0);
+        }
+
+        // в циферблате смотрим на количество очков, если оно там превышает 9, то exit становится true, до этого он все время false
+        let exit = clock_face.getExit();
+        
+         // Задержка для плавности
+         do Sys.wait(5);
+      } 
+      return;
+   }
+}

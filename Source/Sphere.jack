@@ -1,0 +1,155 @@
+class Sphere {
+
+   field int x, y; 
+   field int size; 
+   field Racket left;
+   field Racket right;
+   field Table table;
+
+   field int vx, vy;
+
+   field int startX, startY;
+
+   constructor Sphere new(int Ax, int Ay, int Asize, Racket aLeft, Racket aRight, Table aTable) {
+      let x = Ax;
+      let y = Ay;
+      let startX = Ax;
+      let startY = Ay;
+      let size = Asize;
+      let left = aLeft;
+      let right = aRight;
+      let table = aTable;
+
+      do restoreVector();
+
+      do draw(x, y);
+
+      return this;
+   }
+
+   method int getX() { return x; }
+   method int getY() { return y; }
+   method int getSize() { return size; }
+   
+
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   method void draw(int sx, int sy) {
+      do Screen.setColor(true);
+      do Screen.drawCircle(sx, sy, size);
+      return;
+   }
+
+   method void erase(int sx, int sy) {
+      do Screen.setColor(false);
+      do Screen.drawCircle(sx, sy, size);
+      return;
+   }
+ 
+   method void move(int sx, int sy) {
+      do erase(x, y);
+      let x = sx;
+      let y = sy;
+      do draw(x,y);
+      return;
+   }  
+
+    method void doLogic() {
+      var int newX, newY;
+      var int hitPos;
+      // Рассчитываем новую позицию
+      let newX = x + vx;
+      let newY = y + vy;
+
+      // Отскок от верхней границы
+      if (newY - size < 4) {
+         let vy = -vy;
+      }
+
+      // Проверка столкновения с левой ракеткой
+      if (((newX - size) < (left.getX() + left.getSize())) & 
+          ((newY) > left.getY()) & ((newY) < (left.getY() + left.getSize()))) {
+
+         let hitPos = (newY - left.getY()) * 4 / left.getSize(); // Диапазон 0-4
+         let vy = (hitPos - 2);                                  // vy от -2 до 2
+         let vx = -vx;           // Инвертируем горизонтальную скорость
+         
+         // Добавляем минимальную скорость для предотвращения "залипания"
+         if (vy = 0) { let vy = 1; }
+      }
+
+      // Проверка столкновения с правой ракеткой
+      if (((newX + size) > (right.getX())) & 
+          ((newY) > right.getY()) & ((newY) < (right.getY() + right.getSize()))) {
+
+         let hitPos = (newY - right.getY()) * 4 / right.getSize();
+         let vy = (hitPos - 2);
+         let vx = -vx;
+         
+         if (vy = 0) { let vy = -1; }
+      }
+
+      // Проверка столкновения со столом
+      if (((newX - size) > table.getX()) & ((newX + size) < (table.getX() + table.getWidth())) &
+         (newY + size > (table.getY() - 4))) {
+         let vy = -vy;
+      }
+
+      // Проверяем, забит ли гол правой ракеткой, если да, то меняем начальный вектор движения по x на противоположный (так задумано)
+      if (Goal(newX, newY, x, y) = 1){
+         let vx = -1;
+         return;
+      } 
+
+      // Проверяем, забит ли гол левой
+      if (Goal(newX, newY, x, y) = 0) {
+         return;
+      }
+
+      // Двигаем мяч в новую позицию
+      do move(newX, newY);
+      return;
+   }
+
+   // Проверка условия выхода мяча за левую грань и внизу слева
+   method boolean condL(int newX, int newY, int diff){
+      return (((newX - size) < (4 + diff)) | (((newY + size) > (table.getY() - diff)) & ((newX - size) < table.getX())));
+   }
+
+   // Проверка условия выхода мяча за правую грань и внизу
+   method boolean condR(int newX, int newY, int diff){
+      return (((newX + size) > (508 - diff)) | (((newY + size) > (table.getY() - diff)) & ((newX + size) > (table.getX() + table.getWidth()))));
+   }
+
+   // Рестартим мяч в новой позиции при забитом голе
+   method int Goal(int newX, int newY, int x, int y){
+      if (condL(newX, newY, 0)){
+         do erase(x, y);  
+         do restore();
+         return 1;
+      }
+      if (condR(newX, newY, 0)){
+         do erase(x, y);  
+         do restore();
+         return 0;
+      }
+      return -1;
+   }
+
+   // Перерисовка в стартовой позиции
+   method void restore() {
+      do move(startX, startY);
+      do restoreVector();
+      return;
+   }
+
+   method void restoreVector() {
+      let vx = 1;
+      let vy = 0;
+      return;
+   }
+
+}

@@ -1,0 +1,41 @@
+class Table {
+
+   field int x, y; 
+   field int width, height; 
+
+   constructor Table new(int Ax, int Ay, int Awidth, int Aheight) {
+      let x = Ax;
+      let y = Ay;
+      let width = Awidth;
+      let height = Aheight;
+      do draw();
+      return this;
+   }
+
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawRectangle(x, y, x + width, y + height);
+      return;
+   }
+
+   method void erase() {
+      do Screen.setColor(false);
+      do Screen.drawRectangle(x, y, x + width, y + height);
+      return;
+   }
+
+   method int getX() {
+      return x;
+   }
+   method int getY() {
+      return y;
+   }
+   method int getWidth() {
+      return width;
+   }
+}
