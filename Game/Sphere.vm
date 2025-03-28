@@ -111,7 +111,7 @@ pop local 1
 push local 1
 push this 2
 sub
-push constant 4
+push constant 8
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0

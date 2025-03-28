@@ -65,7 +65,7 @@ class Sphere {
       let newY = y + vy;
 
       // Отскок от верхней границы
-      if (newY - size < 4) {
+      if (newY - size < 8) {
          let vy = -vy;
       }
 
