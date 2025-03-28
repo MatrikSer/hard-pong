@@ -118,18 +118,14 @@ push this 3
 call Sphere.doLogic 1
 pop temp 0
 push this 3
-push this 3
-call Sphere.getX 1
-push this 3
 call Sphere.getY 1
-push constant 1
-call Sphere.condL 4
+push constant 32
+lt
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
 push this 4
-push constant 1
-call Clock_face.ReScore 2
+call Clock_face.draw 1
 pop temp 0
 label IF_FALSE5
 push this 3
@@ -138,15 +134,30 @@ call Sphere.getX 1
 push this 3
 call Sphere.getY 1
 push constant 1
-call Sphere.condR 4
+call Sphere.condL 4
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push this 4
-push constant 0
+push constant 1
 call Clock_face.ReScore 2
 pop temp 0
 label IF_FALSE6
+push this 3
+push this 3
+call Sphere.getX 1
+push this 3
+call Sphere.getY 1
+push constant 1
+call Sphere.condR 4
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 4
+push constant 0
+call Clock_face.ReScore 2
+pop temp 0
+label IF_FALSE7
 push this 4
 call Clock_face.getExit 1
 pop local 1

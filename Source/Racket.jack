@@ -22,7 +22,7 @@ class Racket {
       return;
    }
 
-   method void draw(int location) {
+   method void draw() {
       var int memAddress;
       // рассчитываем адрес в видеопамяти на основе текущих координат
       let memAddress = 16384 + (y * 32) + (x / 16);

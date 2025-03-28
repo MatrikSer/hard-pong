@@ -70,7 +70,7 @@ class Sphere {
       }
 
       // Проверка столкновения с левой ракеткой
-      if (((newX - size) < (left.getX() + left.getSize())) & 
+      if (((newX - size) < (left.getX() + left.getSize() + 4)) & 
           ((newY) > left.getY()) & ((newY) < (left.getY() + left.getSize()))) {
 
          let hitPos = (newY - left.getY()) * 4 / left.getSize(); // Диапазон 0-4
@@ -82,7 +82,7 @@ class Sphere {
       }
 
       // Проверка столкновения с правой ракеткой
-      if (((newX + size) > (right.getX())) & 
+      if (((newX + size) > (right.getX() - 4)) & 
           ((newY) > right.getY()) & ((newY) < (right.getY() + right.getSize()))) {
 
          let hitPos = (newY - right.getY()) * 4 / right.getSize();
@@ -100,7 +100,7 @@ class Sphere {
 
       // Проверяем, забит ли гол правой ракеткой, если да, то меняем начальный вектор движения по x на противоположный (так задумано)
       if (Goal(newX, newY, x, y) = 1){
-         let vx = -1;
+         let vx = -2;
          return;
       } 
 
@@ -147,7 +147,7 @@ class Sphere {
    }
 
    method void restoreVector() {
-      let vx = 1;
+      let vx = 2;
       let vy = 0;
       return;
    }

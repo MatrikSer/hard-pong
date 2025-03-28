@@ -38,20 +38,24 @@ class PongGame {
 
          if (key = 81) { let exit = true; }          // Q - выход
 
-        do sphere.doLogic();
+         do sphere.doLogic();
+        
+         if (sphere.getY() < 32){
+            do clock_face.draw();
+         }
 
-        // проверяем, вылетел ли мяч за левую границу, если да, то добавляем очко правому игроку
-        if (sphere.condL(sphere.getX(), sphere.getY(), 1)){
+         // проверяем, вылетел ли мяч за левую границу, если да, то добавляем очко правому игроку
+         if (sphere.condL(sphere.getX(), sphere.getY(), 1)){
             do clock_face.ReScore(1);
-        }
+         }
 
-        // проверяем, вылетел ли мяч за правую границу, если да, то добавляем очко левому игроку
-        if (sphere.condR(sphere.getX(), sphere.getY(), 1)){
+         // проверяем, вылетел ли мяч за правую границу, если да, то добавляем очко левому игроку
+         if (sphere.condR(sphere.getX(), sphere.getY(), 1)){
             do clock_face.ReScore(0);
-        }
+         }
 
-        // в циферблате смотрим на количество очков, если оно там превышает 9, то exit становится true, до этого он все время false
-        let exit = clock_face.getExit();
+         // в циферблате смотрим на количество очков, если оно там превышает 9, то exit становится true, до этого он все время false
+         let exit = clock_face.getExit();
         
          // Задержка для плавности
          do Sys.wait(5);
