@@ -18,7 +18,7 @@
 - **Racket.jack**: Логика ракетки
 - **RacketDrawing.jack**: Отрисовка ракетки.
 - **Sphere.jack**: Движение мяча, столкновения и его отрисовка.
-- **Table.jack**: Игровой стол и определяет его границы.
+- **Table.jack**: Игровой стол и его границы.
 - **Score.jack**: Отслеживает и отображает очки для игроков.
 - **NumbersDrawing.jack**: Отрисовка чисел
 - **WinnerDrawing.jack**: Отрисовка строки, объявляющей победителя.
@@ -26,13 +26,15 @@
 ## Компиляция
 ### Windows (.bat)
 ```cmd
+cd ./compiler
 ./compiler/build.bat
 ```
 VM файлы появляются в папке Game/
 ### Linux (.sh)
 ```bash
-chmod +x ./TRANSLATE/build.sh
-./compiler/build.sh
+chmod +x ./compiler/build.sh
+cd ./compiler
+./build.sh
 ```
 VM файлы появляются в папке Game/
 
