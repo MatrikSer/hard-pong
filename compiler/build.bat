@@ -6,19 +6,22 @@ rem  mark.armbrust@pobox.com
 setlocal
 
 rem
-set "INPUT_DIR=..\Source"
-set "OUTPUT_DIR=..\Game"
+set "INPUT_DIR=..\src"
+set "OUTPUT_DIR=..\game"
 
 rem
 if not "%2"=="" goto :USAGE
 if "%~1"=="/?" (
 :USAGE
   echo Usage:
-  echo     JackCompiler               Compiles all .jack files in the current
-  echo                                 working directory.
-  echo     JackCompiler DIRECTORY     Compiles all .jack files in DIRECTORY.
-  echo     JackCompiler FILE.jack     Compiles FILE.jack to FILE.vm.
+  echo     JackCompiler               - compiles all .jack files in the Source directory
   exit /b
+)
+
+rem Delete previous .vm files in the output directory
+if exist "%OUTPUT_DIR%\*.vm" (
+    echo Deleting old .vm files in "%OUTPUT_DIR%"...
+    del /q "%OUTPUT_DIR%\*.vm"
 )
 
 echo Compiling "%INPUT_DIR%"

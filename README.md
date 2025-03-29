@@ -26,12 +26,15 @@
 ## Компиляция
 ### Windows (.bat)
 ```cmd
-./Compiler/build.bat
+./compiler/build.bat
 ```
 VM файлы появляются в папке Game/
 ### Linux (.sh)
 ```bash
 chmod +x ./TRANSLATE/build.sh
-./Compiler/build.sh
+./compiler/build.sh
 ```
 VM файлы появляются в папке Game/
+
+##
+25-29.03.2025

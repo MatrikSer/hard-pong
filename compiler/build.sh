@@ -3,16 +3,13 @@
 # JackCompiler.sh
 # Equivalent Bash script for JackCompiler.bat
 
-INPUT_DIR="../Source"
-OUTPUT_DIR="../Game"
+INPUT_DIR="../src"
+OUTPUT_DIR="../game"
 
 # Usage message
 if [[ $# -gt 1 ]]; then
     echo "Usage:"
-    echo "    ./JackCompiler.sh              Compiles all .jack files in the current"
-    echo "                                    working directory."
-    echo "    ./JackCompiler.sh DIRECTORY     Compiles all .jack files in DIRECTORY."
-    echo "    ./JackCompiler.sh FILE.jack     Compiles FILE.jack to FILE.vm."
+    echo "    ./build.sh              compiles all .jack files in the Source directory."
     exit 1
 fi
 
