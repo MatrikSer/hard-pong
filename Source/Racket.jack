@@ -4,11 +4,11 @@ class Racket {
    field int size; 
    field int prevY; // добавляем поле для отслеживания предыдущей позиции
 
-   constructor Racket new(int Ax, int Ay, int Asize) {
-      let x = Ax;
-      let y = Ay;
-      let size = Asize;
-      let prevY = Ay; // инициализируем предыдущую позицию
+   constructor Racket new(int aX, int aY, int aSize) {
+      let x = aX;
+      let y = aY;
+      let size = aSize;
+      let prevY = aY; // инициализируем предыдущую позицию
       do draw();
       return this;
    }
@@ -23,75 +23,7 @@ class Racket {
    }
 
    method void draw() {
-      var int memAddress;
-      // рассчитываем адрес в видеопамяти на основе текущих координат
-      let memAddress = 16384 + (y * 32) + (x / 16);
-      // column 0
-      do Memory.poke(memAddress, -4096);
-      do Memory.poke(memAddress +32, -512);
-      do Memory.poke(memAddress +64, -128);
-      do Memory.poke(memAddress +96, -32);
-      do Memory.poke(memAddress +128, -16);
-      do Memory.poke(memAddress +160, -8);
-      do Memory.poke(memAddress +192, -8);
-      do Memory.poke(memAddress +224, -4);
-      do Memory.poke(memAddress +256, -2);
-      do Memory.poke(memAddress +288, -2);
-      do Memory.poke(memAddress +320, -1);
-      do Memory.poke(memAddress +352, -1);
-      do Memory.poke(memAddress +384, -1);
-      do Memory.poke(memAddress +416, -1);
-      do Memory.poke(memAddress +448, -1);
-      do Memory.poke(memAddress +480, -1);
-      do Memory.poke(memAddress +512, -1);
-      do Memory.poke(memAddress +544, 4095);
-      do Memory.poke(memAddress +576, 1022);
-      do Memory.poke(memAddress +608, 254);
-      do Memory.poke(memAddress +640, 254);
-      do Memory.poke(memAddress +672, 120);
-      do Memory.poke(memAddress +704, -32320);
-      do Memory.poke(memAddress +736, -256);
-      do Memory.poke(memAddress +768, -1024);
-      do Memory.poke(memAddress +800, -8192);
-      do Memory.poke(memAddress +832, -8192);
-      do Memory.poke(memAddress +864, -8192);
-      do Memory.poke(memAddress +896, -8192);
-      do Memory.poke(memAddress +928, -8192);
-      do Memory.poke(memAddress +960, -8192);
-      do Memory.poke(memAddress +992, -8192);
-      // column 1
-      do Memory.poke(memAddress +1, 15);
-      do Memory.poke(memAddress +33, 127);
-      do Memory.poke(memAddress +65, 511);
-      do Memory.poke(memAddress +97, 2047);
-      do Memory.poke(memAddress +129, 4095);
-      do Memory.poke(memAddress +161, 8191);
-      do Memory.poke(memAddress +193, 8191);
-      do Memory.poke(memAddress +225, 16383);
-      do Memory.poke(memAddress +257, 32767);
-      do Memory.poke(memAddress +289, 32767);
-      do Memory.poke(memAddress +321, -1);
-      do Memory.poke(memAddress +353, -1);
-      do Memory.poke(memAddress +385, -1);
-      do Memory.poke(memAddress +417, -1);
-      do Memory.poke(memAddress +449, -1);
-      do Memory.poke(memAddress +481, -1);
-      do Memory.poke(memAddress +513, -1);
-      do Memory.poke(memAddress +545, -16);
-      do Memory.poke(memAddress +577, 32704);
-      do Memory.poke(memAddress +609, 32512);
-      do Memory.poke(memAddress +641, 32512);
-      do Memory.poke(memAddress +673, 7680);
-      do Memory.poke(memAddress +705, 897);
-      do Memory.poke(memAddress +737, 255);
-      do Memory.poke(memAddress +769, 63);
-      do Memory.poke(memAddress +801, 7);
-      do Memory.poke(memAddress +833, 7);
-      do Memory.poke(memAddress +865, 7);
-      do Memory.poke(memAddress +897, 7);
-      do Memory.poke(memAddress +929, 7);
-      do Memory.poke(memAddress +961, 7);
-      do Memory.poke(memAddress +993, 7);
+      do RacketDrawing.draw(x,y);
       return;
    }
 
@@ -108,23 +40,23 @@ class Racket {
       return;
    }
 
-    method void moveUp() {
-        if (y > 1) {
-            do erase(); // стираем в старой позиции
-            let prevY = y; // сохраняем текущую позицию
-            let y = y - 2; // обновляем координату
-            do draw(); // рисуем в новой позиции
-        }
-        return;
-    }
+   method void moveUp() {
+      if (y > 1) {
+         do erase(); // стираем в старой позиции
+         let prevY = y; // сохраняем текущую позицию
+         let y = y - 2; // обновляем координату
+         do draw(); // рисуем в новой позиции
+      }
+      return;
+   }
 
-    method void moveDown() {
-        if ((y + size) < 254) {
-            do erase(); // стираем в старой позиции
-            let prevY = y; // сохраняем текущую позицию
-            let y = y + 2; // обновляем координату
-            do draw(); // рисуем в новой позиции
-        }
-        return;
-    }
+   method void moveDown() {
+      if ((y + size) < 254) {
+         do erase(); // стираем в старой позиции
+         let prevY = y; // сохраняем текущую позицию
+         let y = y + 2; // обновляем координату
+         do draw(); // рисуем в новой позиции
+      }
+      return;
+   }
 }

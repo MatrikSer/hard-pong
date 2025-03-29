@@ -1,4 +1,4 @@
-class Winner{
+class WinnerDrawing {
     function void drawLeft(int location) {
         var int memAddress; 
         let memAddress = 16384+location;
@@ -112,6 +112,7 @@ class Winner{
         do Memory.poke(memAddress +995, 0);
         return;
     }
+    
     function void drawRight(int location) {
         var int memAddress; 
         let memAddress = 16384+location;

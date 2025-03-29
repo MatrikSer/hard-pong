@@ -1,9 +1,9 @@
 function Math.init 1
 push constant 16
-call Array.new 1
+call ArraY.new 1
 pop static 1
 push constant 16
-call Array.new 1
+call ArraY.new 1
 pop static 0
 push constant 0
 push static 0
@@ -382,7 +382,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push local 3
 return
-function Math.max 0
+function Math.maX 0
 push argument 0
 push argument 1
 gt

@@ -19,7 +19,7 @@ push constant 0
 return
 function Output.initMap 0
 push constant 127
-call Array.new 1
+call ArraY.new 1
 pop static 5
 push constant 0
 push constant 63
@@ -1369,7 +1369,7 @@ push constant 0
 return
 function Output.create 1
 push constant 11
-call Array.new 1
+call ArraY.new 1
 pop local 0
 push argument 0
 push static 5
@@ -1471,7 +1471,7 @@ push constant 0
 return
 function Output.createShiftedMap 4
 push constant 127
-call Array.new 1
+call ArraY.new 1
 pop static 6
 push constant 0
 pop local 2
@@ -1488,7 +1488,7 @@ pop pointer 1
 push that 0
 pop local 0
 push constant 11
-call Array.new 1
+call ArraY.new 1
 pop local 1
 push local 2
 push static 6

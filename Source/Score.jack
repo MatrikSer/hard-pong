@@ -1,13 +1,13 @@
-class Clock_face{
+class Score {
     field int xL, xR, y;
     field int leftNum;
     field int rightNum;
     field boolean exit;
 
-    constructor Clock_face new(int AxL, int AxR, int Ay){
-        let xL = AxL;
-        let xR = AxR;
-        let y = Ay;
+    constructor Score new(int aXL, int aXR, int aY){
+        let xL = aXL;
+        let xR = aXR;
+        let y = aY;
         let leftNum  = 0;
         let rightNum = 0;
         let exit = false;
@@ -40,34 +40,34 @@ class Clock_face{
 
         do erase();
 
-        if (leftNum = 0) { do Numbers.drawZero(locationL); }
-        if (leftNum = 1) { do Numbers.drawOne(locationL); }
-        if (leftNum = 2) { do Numbers.drawTwo(locationL); }
-        if (leftNum = 3) { do Numbers.drawThree(locationL); }
-        if (leftNum = 4) { do Numbers.drawFour(locationL); }
-        if (leftNum = 5) { do Numbers.drawFive(locationL); }
-        if (leftNum = 6) { do Numbers.drawSix(locationL); }
-        if (leftNum = 7) { do Numbers.drawSeven(locationL); }
-        if (leftNum = 8) { do Numbers.drawEight(locationL); }
-        if (leftNum = 9) { do Numbers.drawNine(locationL); }
+        if (leftNum = 0) { do NumbersDrawing.drawZero(locationL); }
+        if (leftNum = 1) { do NumbersDrawing.drawOne(locationL); }
+        if (leftNum = 2) { do NumbersDrawing.drawTwo(locationL); }
+        if (leftNum = 3) { do NumbersDrawing.drawThree(locationL); }
+        if (leftNum = 4) { do NumbersDrawing.drawFour(locationL); }
+        if (leftNum = 5) { do NumbersDrawing.drawFive(locationL); }
+        if (leftNum = 6) { do NumbersDrawing.drawSix(locationL); }
+        if (leftNum = 7) { do NumbersDrawing.drawSeven(locationL); }
+        if (leftNum = 8) { do NumbersDrawing.drawEight(locationL); }
+        if (leftNum = 9) { do NumbersDrawing.drawNine(locationL); }
 
-        if (rightNum = 0) { do Numbers.drawZero(locationR); }
-        if (rightNum = 1) { do Numbers.drawOne(locationR); }
-        if (rightNum = 2) { do Numbers.drawTwo(locationR); }
-        if (rightNum = 3) { do Numbers.drawThree(locationR); }
-        if (rightNum = 4) { do Numbers.drawFour(locationR); }
-        if (rightNum = 5) { do Numbers.drawFive(locationR); }
-        if (rightNum = 6) { do Numbers.drawSix(locationR); }
-        if (rightNum = 7) { do Numbers.drawSeven(locationR); }
-        if (rightNum = 8) { do Numbers.drawEight(locationR); }
-        if (rightNum = 9) { do Numbers.drawNine(locationR); }
+        if (rightNum = 0) { do NumbersDrawing.drawZero(locationR); }
+        if (rightNum = 1) { do NumbersDrawing.drawOne(locationR); }
+        if (rightNum = 2) { do NumbersDrawing.drawTwo(locationR); }
+        if (rightNum = 3) { do NumbersDrawing.drawThree(locationR); }
+        if (rightNum = 4) { do NumbersDrawing.drawFour(locationR); }
+        if (rightNum = 5) { do NumbersDrawing.drawFive(locationR); }
+        if (rightNum = 6) { do NumbersDrawing.drawSix(locationR); }
+        if (rightNum = 7) { do NumbersDrawing.drawSeven(locationR); }
+        if (rightNum = 8) { do NumbersDrawing.drawEight(locationR); }
+        if (rightNum = 9) { do NumbersDrawing.drawNine(locationR); }
 
         return;
     }
 
     // инкрементит очки стороны, которую передали в аргументы
     // проверяет условие окончания игры, ставит значение поля exit в true, если игру нужно закончить, рисуя при этом победителя
-    method void ReScore(int LorR){
+    method void rescore(int LorR){
         var int location;
         let location = (y * 32) + (xL / 16);
 
@@ -90,11 +90,11 @@ class Clock_face{
             let exit = true;
             if (leftNum > 9){
                 do erase();
-                do Winner.drawLeft(location);
+                do WinnerDrawing.drawLeft(location);
             }
             else{
                 do erase();
-                do Winner.drawRight(location);
+                do WinnerDrawing.drawRight(location);
             }
         }
         return;

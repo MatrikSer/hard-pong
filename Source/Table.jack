@@ -3,9 +3,9 @@ class Table {
    field int x, y; 
    field int width, height; 
 
-   constructor Table new(int Ax, int Ay, int Awidth, int Aheight) {
-      let x = Ax;
-      let y = Ay;
+   constructor Table new(int aX, int aY, int Awidth, int Aheight) {
+      let x = aX;
+      let y = aY;
       let width = Awidth;
       let height = Aheight;
       do draw();

@@ -19,7 +19,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push argument 0
-call Array.new 1
+call ArraY.new 1
 pop this 1
 label IF_FALSE1
 push argument 0
@@ -38,7 +38,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push this 1
-call Array.dispose 1
+call ArraY.dispose 1
 pop temp 0
 label IF_FALSE0
 push pointer 0
@@ -252,7 +252,7 @@ call Sys.error 1
 pop temp 0
 label IF_FALSE0
 push constant 6
-call Array.new 1
+call ArraY.new 1
 pop local 2
 push argument 1
 push constant 0
@@ -378,7 +378,7 @@ goto WHILE_EXP1
 label WHILE_END1
 label IF_END4
 push local 2
-call Array.dispose 1
+call ArraY.dispose 1
 pop temp 0
 push constant 0
 return

@@ -3,14 +3,14 @@ class PongGame {
    field Racket rightRacket;
    field Table table;
    field Sphere sphere;
-   field Clock_face clock_face;
+   field Score score;
 
    constructor PongGame new() {
       let leftRacket = Racket.new(0, 0, 32);
       let rightRacket = Racket.new(485,0,32);
       let table = Table.new(96, 240, 320, 10);
       let sphere = Sphere.new(256, 128, 10, leftRacket, rightRacket, table);
-      let clock_face = Clock_face.new(224,224+32, 0);
+      let score = Score.new(224,224+32, 0);
       return this;
    }
 
@@ -41,21 +41,21 @@ class PongGame {
          do sphere.doLogic();
         
          if (sphere.getY() < 32){
-            do clock_face.draw();
+            do score.draw();
          }
 
          // проверяем, вылетел ли мяч за левую границу, если да, то добавляем очко правому игроку
-         if (sphere.condL(sphere.getX(), sphere.getY(), 1)){
-            do clock_face.ReScore(1);
+         if (sphere.outOfLeft(sphere.getX(), sphere.getY(), 1)){
+            do score.rescore(1);
          }
 
          // проверяем, вылетел ли мяч за правую границу, если да, то добавляем очко левому игроку
-         if (sphere.condR(sphere.getX(), sphere.getY(), 1)){
-            do clock_face.ReScore(0);
+         if (sphere.outOfRight(sphere.getX(), sphere.getY(), 1)){
+            do score.rescore(0);
          }
 
          // в циферблате смотрим на количество очков, если оно там превышает 9, то exit становится true, до этого он все время false
-         let exit = clock_face.getExit();
+         let exit = score.getExit();
         
          // Задержка для плавности
          do Sys.wait(5);

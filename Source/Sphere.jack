@@ -10,12 +10,12 @@ class Sphere {
 
    field int startX, startY;
 
-   constructor Sphere new(int Ax, int Ay, int Asize, Racket aLeft, Racket aRight, Table aTable) {
-      let x = Ax;
-      let y = Ay;
-      let startX = Ax;
-      let startY = Ay;
-      let size = Asize;
+   constructor Sphere new(int aX, int aY, int aSize, Racket aLeft, Racket aRight, Table aTable) {
+      let x = aX;
+      let y = aY;
+      let startX = aX;
+      let startY = aY;
+      let size = aSize;
       let left = aLeft;
       let right = aRight;
       let table = aTable;
@@ -60,6 +60,7 @@ class Sphere {
     method void doLogic() {
       var int newX, newY;
       var int hitPos;
+      var int goalState;
       // Рассчитываем новую позицию
       let newX = x + vx;
       let newY = y + vy;
@@ -99,13 +100,14 @@ class Sphere {
       }
 
       // Проверяем, забит ли гол правой ракеткой, если да, то меняем начальный вектор движения по x на противоположный (так задумано)
-      if (Goal(newX, newY, x, y) = 1){
+      let goalState = goal(newX, newY, x, y);
+      if (goalState = 1){
          let vx = -2;
          return;
       } 
 
       // Проверяем, забит ли гол левой
-      if (Goal(newX, newY, x, y) = 0) {
+      if (goalState = 0) {
          return;
       }
 
@@ -115,23 +117,23 @@ class Sphere {
    }
 
    // Проверка условия выхода мяча за левую грань и внизу слева
-   method boolean condL(int newX, int newY, int diff){
+   method boolean outOfLeft(int newX, int newY, int diff){
       return (((newX - size) < (4 + diff)) | (((newY + size) > (table.getY() - diff)) & ((newX - size) < table.getX())));
    }
 
    // Проверка условия выхода мяча за правую грань и внизу
-   method boolean condR(int newX, int newY, int diff){
+   method boolean outOfRight(int newX, int newY, int diff){
       return (((newX + size) > (508 - diff)) | (((newY + size) > (table.getY() - diff)) & ((newX + size) > (table.getX() + table.getWidth()))));
    }
 
    // Рестартим мяч в новой позиции при забитом голе
-   method int Goal(int newX, int newY, int x, int y){
-      if (condL(newX, newY, 0)){
+   method int goal(int newX, int newY, int x, int y){
+      if (outOfLeft(newX, newY, 0)){
          do erase(x, y);  
          do restore();
          return 1;
       }
-      if (condR(newX, newY, 0)){
+      if (outOfRight(newX, newY, 0)){
          do erase(x, y);  
          do restore();
          return 0;

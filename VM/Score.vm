@@ -1,4 +1,4 @@
-function Clock_face.new 0
+function Score.new 0
 push constant 6
 call Memory.alloc 1
 pop pointer 0
@@ -15,16 +15,16 @@ pop this 4
 push constant 0
 pop this 5
 push pointer 0
-call Clock_face.draw 1
+call Score.draw 1
 pop temp 0
 push pointer 0
 return
-function Clock_face.getExit 0
+function Score.getExit 0
 push argument 0
 pop pointer 0
 push this 5
 return
-function Clock_face.dispose 0
+function Score.dispose 0
 push argument 0
 pop pointer 0
 push pointer 0
@@ -32,7 +32,7 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function Clock_face.erase 0
+function Score.erase 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -50,7 +50,7 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
-function Clock_face.draw 2
+function Score.draw 2
 push argument 0
 pop pointer 0
 push this 2
@@ -70,7 +70,7 @@ call Math.divide 2
 add
 pop local 1
 push pointer 0
-call Clock_face.erase 1
+call Score.erase 1
 pop temp 0
 push this 3
 push constant 0
@@ -79,7 +79,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push local 0
-call Numbers.drawZero 1
+call NumbersDrawing.drawZero 1
 pop temp 0
 label IF_FALSE0
 push this 3
@@ -89,7 +89,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push local 0
-call Numbers.drawOne 1
+call NumbersDrawing.drawOne 1
 pop temp 0
 label IF_FALSE1
 push this 3
@@ -99,7 +99,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push local 0
-call Numbers.drawTwo 1
+call NumbersDrawing.drawTwo 1
 pop temp 0
 label IF_FALSE2
 push this 3
@@ -109,7 +109,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push local 0
-call Numbers.drawThree 1
+call NumbersDrawing.drawThree 1
 pop temp 0
 label IF_FALSE3
 push this 3
@@ -119,7 +119,7 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push local 0
-call Numbers.drawFour 1
+call NumbersDrawing.drawFour 1
 pop temp 0
 label IF_FALSE4
 push this 3
@@ -129,7 +129,7 @@ if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
 push local 0
-call Numbers.drawFive 1
+call NumbersDrawing.drawFive 1
 pop temp 0
 label IF_FALSE5
 push this 3
@@ -139,7 +139,7 @@ if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push local 0
-call Numbers.drawSix 1
+call NumbersDrawing.drawSix 1
 pop temp 0
 label IF_FALSE6
 push this 3
@@ -149,7 +149,7 @@ if-goto IF_TRUE7
 goto IF_FALSE7
 label IF_TRUE7
 push local 0
-call Numbers.drawSeven 1
+call NumbersDrawing.drawSeven 1
 pop temp 0
 label IF_FALSE7
 push this 3
@@ -159,7 +159,7 @@ if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
 push local 0
-call Numbers.drawEight 1
+call NumbersDrawing.drawEight 1
 pop temp 0
 label IF_FALSE8
 push this 3
@@ -169,7 +169,7 @@ if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
 push local 0
-call Numbers.drawNine 1
+call NumbersDrawing.drawNine 1
 pop temp 0
 label IF_FALSE9
 push this 4
@@ -179,7 +179,7 @@ if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
 push local 1
-call Numbers.drawZero 1
+call NumbersDrawing.drawZero 1
 pop temp 0
 label IF_FALSE10
 push this 4
@@ -189,7 +189,7 @@ if-goto IF_TRUE11
 goto IF_FALSE11
 label IF_TRUE11
 push local 1
-call Numbers.drawOne 1
+call NumbersDrawing.drawOne 1
 pop temp 0
 label IF_FALSE11
 push this 4
@@ -199,7 +199,7 @@ if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
 push local 1
-call Numbers.drawTwo 1
+call NumbersDrawing.drawTwo 1
 pop temp 0
 label IF_FALSE12
 push this 4
@@ -209,7 +209,7 @@ if-goto IF_TRUE13
 goto IF_FALSE13
 label IF_TRUE13
 push local 1
-call Numbers.drawThree 1
+call NumbersDrawing.drawThree 1
 pop temp 0
 label IF_FALSE13
 push this 4
@@ -219,7 +219,7 @@ if-goto IF_TRUE14
 goto IF_FALSE14
 label IF_TRUE14
 push local 1
-call Numbers.drawFour 1
+call NumbersDrawing.drawFour 1
 pop temp 0
 label IF_FALSE14
 push this 4
@@ -229,7 +229,7 @@ if-goto IF_TRUE15
 goto IF_FALSE15
 label IF_TRUE15
 push local 1
-call Numbers.drawFive 1
+call NumbersDrawing.drawFive 1
 pop temp 0
 label IF_FALSE15
 push this 4
@@ -239,7 +239,7 @@ if-goto IF_TRUE16
 goto IF_FALSE16
 label IF_TRUE16
 push local 1
-call Numbers.drawSix 1
+call NumbersDrawing.drawSix 1
 pop temp 0
 label IF_FALSE16
 push this 4
@@ -249,7 +249,7 @@ if-goto IF_TRUE17
 goto IF_FALSE17
 label IF_TRUE17
 push local 1
-call Numbers.drawSeven 1
+call NumbersDrawing.drawSeven 1
 pop temp 0
 label IF_FALSE17
 push this 4
@@ -259,7 +259,7 @@ if-goto IF_TRUE18
 goto IF_FALSE18
 label IF_TRUE18
 push local 1
-call Numbers.drawEight 1
+call NumbersDrawing.drawEight 1
 pop temp 0
 label IF_FALSE18
 push this 4
@@ -269,12 +269,12 @@ if-goto IF_TRUE19
 goto IF_FALSE19
 label IF_TRUE19
 push local 1
-call Numbers.drawNine 1
+call NumbersDrawing.drawNine 1
 pop temp 0
 label IF_FALSE19
 push constant 0
 return
-function Clock_face.rescore 1
+function Score.rescore 1
 push argument 0
 pop pointer 0
 push this 2
@@ -302,7 +302,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push pointer 0
-call Clock_face.draw 1
+call Score.draw 1
 pop temp 0
 label IF_FALSE1
 goto IF_END0
@@ -318,7 +318,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push pointer 0
-call Clock_face.draw 1
+call Score.draw 1
 pop temp 0
 label IF_FALSE2
 label IF_END0
@@ -342,18 +342,18 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push pointer 0
-call Clock_face.erase 1
+call Score.erase 1
 pop temp 0
 push local 0
-call Winner.drawLeft 1
+call WinnerDrawing.drawLeft 1
 pop temp 0
 goto IF_END4
 label IF_FALSE4
 push pointer 0
-call Clock_face.erase 1
+call Score.erase 1
 pop temp 0
 push local 0
-call Winner.drawRight 1
+call WinnerDrawing.drawRight 1
 pop temp 0
 label IF_END4
 label IF_FALSE3
