@@ -40,7 +40,7 @@ class PongGame {
 
          do sphere.doLogic();
         
-         if (sphere.getY() < 32){
+         if (sphere.getY() = 48 | sphere.getY() < 20){
             do score.draw();
          }
 

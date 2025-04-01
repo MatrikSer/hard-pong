@@ -62,6 +62,10 @@ class Score {
         if (rightNum = 8) { do NumbersDrawing.drawEight(locationR); }
         if (rightNum = 9) { do NumbersDrawing.drawNine(locationR); }
 
+        // рисуем разделительную полосу
+        do Screen.setColor(true);
+        do Screen.drawRectangle(xL + 24, y + 8, xL + 26, y + 10);
+        do Screen.drawRectangle(xL + 24, y + 22, xL + 26, y + 24);
         return;
     }
 

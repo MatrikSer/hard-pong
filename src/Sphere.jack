@@ -71,8 +71,8 @@ class Sphere {
       }
 
       // Проверка столкновения с левой ракеткой
-      if (((newX - size) < (left.getX() + left.getSize() + 4)) & 
-          ((newY) > left.getY()) & ((newY) < (left.getY() + left.getSize()))) {
+      if (((newX - size) < (left.getX() + left.getSize() + 5)) & 
+          ((newY + size) > left.getY()) & ((newY - size) < (left.getY() + left.getSize()))) {
 
          let hitPos = (newY - left.getY()) * 4 / left.getSize(); // Диапазон 0-4
          let vy = (hitPos - 2);                                  // vy от -2 до 2
@@ -82,15 +82,25 @@ class Sphere {
          if (vy = 0) { let vy = 1; }
       }
 
+      // перерисовываем ракетку на случай стирания
+      if (newX = left.getSize()*3){
+            do left.draw();
+      }
+
       // Проверка столкновения с правой ракеткой
-      if (((newX + size) > (right.getX() - 4)) & 
-          ((newY) > right.getY()) & ((newY) < (right.getY() + right.getSize()))) {
+      if (((newX + size) > (right.getX() - 5)) & 
+          ((newY + size) > right.getY()) & ((newY - size) < (right.getY() + right.getSize()))) {
 
          let hitPos = (newY - right.getY()) * 4 / right.getSize();
          let vy = (hitPos - 2);
          let vx = -vx;
-         
+
          if (vy = 0) { let vy = -1; }
+      }
+
+      // перерисовываем ракетку на случай стирания
+      if (newX = 512 - right.getSize()*3){
+            do right.draw();
       }
 
       // Проверка столкновения со столом
@@ -118,12 +128,12 @@ class Sphere {
 
    // Проверка условия выхода мяча за левую грань и внизу слева
    method boolean outOfLeft(int newX, int newY, int diff){
-      return (((newX - size) < (4 + diff)) | (((newY + size) > (table.getY() - diff)) & ((newX - size) < table.getX())));
+      return (((newX - size) < (4 + diff)) | (((newY + size) > (table.getY() - diff)) & ((newX - size) < table.getX())) | ((newX - size) < (left.getX()+left.getSize())/3) | ((newY < size + 4) & ((newX - size) < (4 + diff))));
    }
 
    // Проверка условия выхода мяча за правую грань и внизу
    method boolean outOfRight(int newX, int newY, int diff){
-      return (((newX + size) > (508 - diff)) | (((newY + size) > (table.getY() - diff)) & ((newX + size) > (table.getX() + table.getWidth()))));
+      return (((newX + size) > right.getX()/3) | ((newX + size) > (508 - diff)) | (((newY + size) > (table.getY() - diff)) & ((newX + size) > (table.getX() + table.getWidth()))) | ((newY < size + 4) & ((newX + size) > (508 - diff))));
    }
 
    // Рестартим мяч в новой позиции при забитом голе
