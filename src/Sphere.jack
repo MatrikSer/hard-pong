@@ -7,18 +7,19 @@ class Sphere {
    field Table table;
 
    field int vx, vy;
+   field int newX, newY;
 
    field int startX, startY;
 
-   constructor Sphere new(int aX, int aY, int aSize, Racket aLeft, Racket aRight, Table aTable) {
-      let x = aX;
-      let y = aY;
-      let startX = aX;
-      let startY = aY;
-      let size = aSize;
-      let left = aLeft;
-      let right = aRight;
-      let table = aTable;
+   constructor Sphere new(int _x, int _y, int _size, Racket _left, Racket _right, Table _table) {
+      let x = _x;
+      let y = _y;
+      let startX = _x;
+      let startY = _y;
+      let size = _size;
+      let left = _left;
+      let right = _right;
+      let table = _table;
 
       do restoreVector();
 
@@ -29,6 +30,10 @@ class Sphere {
 
    method int getX() { return x; }
    method int getY() { return y; }
+
+   method int getNewX() { return newX; }
+   method int getNewY() { return newY; }
+
    method int getSize() { return size; }
    
 
@@ -49,15 +54,15 @@ class Sphere {
       return;
    }
  
-   method void move(int sx, int sy) {
+   method void move(int _x, int _y) {
       do erase(x, y);
-      let x = sx;
-      let y = sy;
+      let x = _x;
+      let y = _y;
       do draw(x,y);
       return;
    }  
 
-    method void doLogic() {
+    method void updateBallPosition() {
       var int newX, newY;
       var int hitPos;
       var int goalState;

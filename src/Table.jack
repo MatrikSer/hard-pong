@@ -3,11 +3,11 @@ class Table {
    field int x, y; 
    field int width, height; 
 
-   constructor Table new(int aX, int aY, int Awidth, int Aheight) {
-      let x = aX;
-      let y = aY;
-      let width = Awidth;
-      let height = Aheight;
+   constructor Table new(int _X, int _Y, int _width, int _height) {
+      let x = _X;
+      let y = _Y;
+      let width = _width;
+      let height = _height;
       do draw();
       return this;
    }

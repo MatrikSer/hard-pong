@@ -4,11 +4,11 @@ class Racket {
    field int size; 
    field int prevY; // добавляем поле для отслеживания предыдущей позиции
 
-   constructor Racket new(int aX, int aY, int aSize) {
-      let x = aX;
-      let y = aY;
-      let size = aSize;
-      let prevY = aY; // инициализируем предыдущую позицию
+   constructor Racket new(int _X, int _Y, int _Size) {
+      let x = _X;
+      let y = _Y;
+      let size = _Size;
+      let prevY = _Y; // инициализируем предыдущую позицию
       do draw();
       return this;
    }

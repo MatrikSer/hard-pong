@@ -2,21 +2,20 @@ class Score {
     field int xL, xR, y;
     field int leftNum;
     field int rightNum;
-    field boolean exit;
+    field boolean isEnd;
 
-    constructor Score new(int aXL, int aXR, int aY){
-        let xL = aXL;
-        let xR = aXR;
-        let y = aY;
-        let leftNum  = 0;
-        let rightNum = 0;
-        let exit = false;
+    constructor Score new(int _XL, int _XR, int _Y){
+        let xL = _XL;
+        let xR = _XR;
+        let y = _Y;
+        do restart();
+        let isEnd = false;
         do draw();
         return this;
     }
 
     method boolean getExit(){
-        return exit;
+        return isEnd;
     }
 
     method void dispose() {
@@ -70,13 +69,13 @@ class Score {
     }
 
     // инкрементит очки стороны, которую передали в аргументы
-    // проверяет условие окончания игры, ставит значение поля exit в true, если игру нужно закончить, рисуя при этом победителя
-    method void rescore(int LorR){
+    // проверяет условие окончания игры, ставит значение поля isEnd в true, если игру нужно закончить, рисуя при этом победителя
+    method void rescore(int isRightWin){
         var int location;
         let location = (y * 32) + (xL / 16);
 
-        // если LorR = 0, значит добавляем очко левому игроку, иначе правому
-        if (LorR = 0){
+        // если isRightWin = 0, значит добавляем очко левому игроку, иначе правому
+        if (isRightWin = 0){
             let leftNum = leftNum + 1;
             if (leftNum < 10){
                 do draw();
@@ -91,16 +90,21 @@ class Score {
 
         // если забили 10 очко, то определяем победителя и рисуем заставочку
         if ((leftNum > 9) | (rightNum > 9)){
-            let exit = true;
+            let isEnd = true;
             if (leftNum > 9){
-                do erase();
                 do WinnerDrawing.drawLeft(location);
             }
             else{
-                do erase();
                 do WinnerDrawing.drawRight(location);
             }
+            do erase();
         }
+        return;
+    }
+
+    method void restart() {
+        let leftNum  = 0;
+        let rightNum = 0;   
         return;
     }
 }

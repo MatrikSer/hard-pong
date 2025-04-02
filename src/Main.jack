@@ -1,9 +1,39 @@
 class Main {
     function void main() {
+        while(Main.askForRestart()) {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(0, 0, 511, 255);
+
+            do Main.start();
+        }
+        return;
+    }
+
+    function void start() {
         var PongGame game;
         let game = PongGame.new();
         do game.run();
         do game.dispose();
         return;
     }
+
+   function boolean askForRestart() {
+      var int key;
+      do Output.moveCursor(12, 12);
+      do Output.printString("Press SPACE to start new game, ESC to exit.");
+      while(true) {
+         let key = Keyboard.keyPressed();
+         //restart: SPACE
+         if (key = 32) { 
+            return true;
+         }
+         //quit: ESC
+         if (key = 140) { 
+            return false;
+         }  
+         // throttle
+         do Sys.wait(5);
+      }
+      return false;
+   }
 }

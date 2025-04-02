@@ -7,10 +7,10 @@ class PongGame {
 
    constructor PongGame new() {
       let leftRacket = Racket.new(0, 0, 32);
-      let rightRacket = Racket.new(485,0,32);
+      let rightRacket = Racket.new(485, 0, 32);
       let table = Table.new(96, 240, 320, 10);
       let sphere = Sphere.new(256, 128, 10, leftRacket, rightRacket, table);
-      let score = Score.new(224,224+32, 0);
+      let score = Score.new(224, 224 + 32, 0);
       return this;
    }
 
@@ -18,6 +18,7 @@ class PongGame {
       do leftRacket.dispose();
       do rightRacket.dispose();
       do table.dispose();
+      do score.dispose();
       do Memory.deAlloc(this);
       return;
    }
@@ -36,10 +37,8 @@ class PongGame {
          if (key = 131) { do rightRacket.moveUp(); }   // Up - вверх
          if (key = 133) { do rightRacket.moveDown(); } // Down - вниз
 
-         if (key = 81) { let exit = true; }          // Q - выход
-
-         do sphere.doLogic();
-        
+         do sphere.updateBallPosition();
+         
          if (sphere.getY() = 48 | sphere.getY() < 20){
             do score.draw();
          }
@@ -56,6 +55,9 @@ class PongGame {
 
          // в циферблате смотрим на количество очков, если оно там превышает 9, то exit становится true, до этого он все время false
          let exit = score.getExit();
+         if(exit) {
+            return;
+         }
         
          // Задержка для плавности
          do Sys.wait(5);
