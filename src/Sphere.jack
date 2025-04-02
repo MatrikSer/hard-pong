@@ -7,7 +7,6 @@ class Sphere {
    field Table table;
 
    field int vx, vy;
-   field int newX, newY;
 
    field int startX, startY;
 
@@ -30,9 +29,6 @@ class Sphere {
 
    method int getX() { return x; }
    method int getY() { return y; }
-
-   method int getNewX() { return newX; }
-   method int getNewY() { return newY; }
 
    method int getSize() { return size; }
    

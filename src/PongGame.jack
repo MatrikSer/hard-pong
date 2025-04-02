@@ -19,6 +19,7 @@ class PongGame {
       do rightRacket.dispose();
       do table.dispose();
       do score.dispose();
+      do sphere.dispose();
       do Memory.deAlloc(this);
       return;
    }
