@@ -90,6 +90,7 @@ class Score {
 
         // если забили 10 очко, то определяем победителя и рисуем заставочку
         if ((leftNum > 9) | (rightNum > 9)){
+            do erase();
             let isEnd = true;
             if (leftNum > 9){
                 do WinnerDrawing.drawLeft(location);
@@ -97,7 +98,6 @@ class Score {
             else{
                 do WinnerDrawing.drawRight(location);
             }
-            do erase();
         }
         return;
     }
